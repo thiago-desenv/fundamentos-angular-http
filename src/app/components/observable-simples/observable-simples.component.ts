@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ObservableService } from './observable.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-observable-simples',
@@ -8,9 +9,17 @@ import { ObservableService } from './observable.service';
   standalone: true,
 })
 export class ObservableSimplesComponent {
+  subs!: Subscription;
+
   private readonly _observableService = inject(ObservableService);
 
   ngOnInit() {
-    this._observableService.obsSimples().subscribe((valor) => console.log(valor));
+    // this._observableService.obsSimples().subscribe((valor) => console.log(valor));
+
+    this.subs = this._observableService.obsInterval().subscribe((valor) => console.log(valor));
+  }
+
+  unsubscribeInterval() {
+    this.subs?.unsubscribe();
   }
 }
