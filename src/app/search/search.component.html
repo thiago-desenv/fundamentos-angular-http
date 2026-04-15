@@ -1,0 +1,15 @@
+<div style="padding: 20px;">
+  <h3>Exemplo Prático de switchMap</h3>
+
+  <input
+    type="text"
+    [formControl]="searchControl"
+    placeholder="Digite rápido para testar o cancelamento..."
+    style="width: 300px; padding: 8px;"
+  >
+
+  <div style="margin-top: 20px;">
+    <p *ngIf="loading">⏳ Processando requisição (simulando delay)...</p>
+    <p *ngIf="resultado">✅ <strong>Resultado:</strong> {{ resultado }}</p>
+  </div>
+</div>
