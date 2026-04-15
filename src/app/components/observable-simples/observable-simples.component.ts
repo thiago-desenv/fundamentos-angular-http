@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ObservableService } from './observable.service';
-import { Subscription, switchMap } from 'rxjs';
+import { Subscription, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-observable-simples',
@@ -29,6 +29,7 @@ export class ObservableSimplesComponent {
 
         return this._observableService.obs2();
       }),
+      take(1)
     ).subscribe((valueObs2) => console.log('valueObs2', valueObs2));
   }
 
