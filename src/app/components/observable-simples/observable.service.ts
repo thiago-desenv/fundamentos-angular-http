@@ -62,4 +62,22 @@ export class ObservableService {
       }),
     );
   }
+
+  obs1() {
+    return new Observable((observer) => {
+      observer.next(1);
+      // observer.complete();
+
+      return () => console.log('Limpeza 1');
+    });
+  }
+
+  obs2() {
+    return new Observable((observer) => {
+      observer.next(2);
+      // observer.complete();
+
+      return () => console.log('Limpeza 2');
+    });
+  }
 }

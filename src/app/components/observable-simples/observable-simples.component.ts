@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ObservableService } from './observable.service';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-observable-simples',
@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ObservableSimplesComponent {
   subs!: Subscription;
+  subsSwitchMap!: Subscription;
 
   private readonly _observableService = inject(ObservableService);
 
@@ -18,12 +19,24 @@ export class ObservableSimplesComponent {
 
     // this.subs = this._observableService.obsInterval().subscribe((valor) => console.log(valor));
 
-    this._observableService.getTodoInfos(1).subscribe((response) => {
-      console.log('Todo', response);
-    });
+    // this._observableService.getTodoInfos(1).subscribe((response) => {
+    //   console.log('Todo', response);
+    // });
+
+    this.subsSwitchMap = this._observableService.obs1().pipe(
+      switchMap((valueObs1) => {
+        console.log('valueObs1', valueObs1);
+
+        return this._observableService.obs2();
+      }),
+    ).subscribe((valueObs2) => console.log('valueObs2', valueObs2));
   }
 
   unsubscribeInterval() {
     this.subs?.unsubscribe();
+  }
+
+  unsubscribeSwitchMap() {
+    this.subsSwitchMap?.unsubscribe();
   }
 }
