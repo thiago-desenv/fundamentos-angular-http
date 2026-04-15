@@ -16,7 +16,11 @@ export class ObservableSimplesComponent {
   ngOnInit() {
     // this._observableService.obsSimples().subscribe((valor) => console.log(valor));
 
-    this.subs = this._observableService.obsInterval().subscribe((valor) => console.log(valor));
+    // this.subs = this._observableService.obsInterval().subscribe((valor) => console.log(valor));
+
+    this._observableService.getTodoInfos(1).subscribe((response) => {
+      console.log('Todo', response);
+    });
   }
 
   unsubscribeInterval() {
