@@ -5,8 +5,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SubjectService {
-  private readonly valueChanged$ = new Subject<number>();
-  // readonly valueChanged$ = new BehaviorSubject<number>(1);
+  // private readonly valueChanged$ = new Subject<number>();
+  readonly valueChanged$ = new BehaviorSubject<number>(1);
 
   valueChanged(): Observable<number> {
     return this.valueChanged$.asObservable();
