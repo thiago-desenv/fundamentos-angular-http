@@ -12,6 +12,4 @@ import { SubjectComponent } from './components/subject/subject.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'fundamentos-angular-http';
-}
+export class AppComponent { }

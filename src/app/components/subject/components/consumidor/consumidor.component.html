@@ -1,3 +1,5 @@
-<p>
-  consumidor works!
-</p>
+<p>Conusmidor</p>
+
+@if(valueChanged$ | async; as value) {
+  <p>Valor atual: {{ value }}</p>
+}
