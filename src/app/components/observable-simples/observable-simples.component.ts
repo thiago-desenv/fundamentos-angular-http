@@ -15,6 +15,8 @@ export class ObservableSimplesComponent {
   private readonly _observableService = inject(ObservableService);
 
   ngOnInit() {
+    this.fluxoIbs();
+
     // this._observableService.obsSimples().subscribe((valor) => console.log(valor));
 
     // this.subs = this._observableService.obsInterval().subscribe((valor) => console.log(valor));
@@ -23,14 +25,22 @@ export class ObservableSimplesComponent {
     //   console.log('Todo', response);
     // });
 
-    this.subsSwitchMap = this._observableService.obs1().pipe(
-      switchMap((valueObs1) => {
-        console.log('valueObs1', valueObs1);
+    // this.subsSwitchMap = this._observableService.obs1().pipe(
+    //   switchMap((valueObs1) => {
+    //     console.log('valueObs1', valueObs1);
 
-        return this._observableService.obs2();
-      }),
-      take(1)
-    ).subscribe((valueObs2) => console.log('valueObs2', valueObs2));
+    //     return this._observableService.obs2();
+    //   }),
+    //   take(1)
+    // ).subscribe((valueObs2) => console.log('valueObs2', valueObs2));
+  }
+
+  fluxoIbs() {
+    console.log('fluxoObs');
+    this._observableService.obs1().subscribe(() => console.log('obs'));
+    this._observableService.getTodoInfos(1).subscribe((value) => console.log(value));
+
+    console.log('Final');
   }
 
   unsubscribeInterval() {
