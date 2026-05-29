@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { PromiseService } from './promise.service';
 
 @Component({
   selector: 'app-promises',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './promises.component.scss'
 })
 export class PromisesComponent {
+  private readonly _promisesService = inject(PromiseService);
 
+  ngOnInit() {
+    this._promisesService.promiseSimples().then((value) => { console.log('Then', value) });
+  }
 }

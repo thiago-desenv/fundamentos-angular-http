@@ -5,5 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class PromiseService {
 
-  constructor() { }
+  promiseSimples() {
+    return new Promise((resolve, reject) => {
+      console.log('Promise Simples');
+
+      const interval = setInterval(() => {
+        console.log('setInterval');
+        resolve('Promise Resolved');
+        clearInterval(interval);
+      }, 1000);
+
+      console.log('Final Promise');
+    });
+  }
 }
