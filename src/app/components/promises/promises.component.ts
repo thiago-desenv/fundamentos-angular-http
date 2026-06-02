@@ -12,7 +12,9 @@ export class PromisesComponent {
   private readonly _promisesService = inject(PromiseService);
 
   ngOnInit() {
-    this._promisesService.promiseSimples().then((value) => { console.log('Then', value) });
+    // this._promisesService.promiseSimples().then((value) => { console.log('Then', value) });
+
+    console.log('1');
 
     this._promisesService.promiseRejected()
       .then((value) => { console.log('Resolved') })
@@ -22,5 +24,7 @@ export class PromisesComponent {
       .finally(() =>  {
         console.log('Finally');
       });
+
+      console.log('2');
   }
 }
