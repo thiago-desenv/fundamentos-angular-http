@@ -18,4 +18,14 @@ export class PromiseService {
       console.log('Final Promise');
     });
   }
+
+  promiseRejected() {
+    return new Promise((resolve, reject) =>  {
+      console.log('Promise rejected');
+
+      reject(new Error('Ocorreu um erro'));
+
+      console.log('Final')
+    });
+  }
 }

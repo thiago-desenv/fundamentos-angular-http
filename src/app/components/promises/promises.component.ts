@@ -13,5 +13,14 @@ export class PromisesComponent {
 
   ngOnInit() {
     this._promisesService.promiseSimples().then((value) => { console.log('Then', value) });
+
+    this._promisesService.promiseRejected()
+      .then((value) => { console.log('Resolved') })
+      .catch((error) =>  {
+        console.log('Catch ', error);
+      })
+      .finally(() =>  {
+        console.log('Finally');
+      });
   }
 }
