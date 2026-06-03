@@ -37,4 +37,14 @@ export class PromisesComponent {
     .catch((error) => { console.log('Error', error); })
     .finally(() => console.log('Finally'));
   }
+
+  promiseRace() {
+   Promise.race([
+    this._promisesService.getUsers(),
+    this._promisesService.getTodos()
+   ])
+   .then((response) => { console.log('Response', response); })
+   .catch((error) => { console.log('Error ', error); })
+   .finally(() => console.log('Finally'));
+  }
 }
