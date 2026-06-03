@@ -14,17 +14,27 @@ export class PromisesComponent {
   ngOnInit() {
     // this._promisesService.promiseSimples().then((value) => { console.log('Then', value) });
 
-    console.log('1');
+    // console.log('1');
 
-    this._promisesService.promiseRejected()
-      .then((value) => { console.log('Resolved') })
-      .catch((error) =>  {
-        console.log('Catch ', error);
-      })
-      .finally(() =>  {
-        console.log('Finally');
-      });
+    // this._promisesService.promiseRejected()
+    //   .then((value) => { console.log('Resolved') })
+    //   .catch((error) =>  {
+    //     console.log('Catch ', error);
+    //   })
+    //   .finally(() =>  {
+    //     console.log('Finally');
+    //   });
 
-      console.log('2');
+    //   console.log('2');
+  }
+
+  promisseAll() {
+    Promise.all([
+      this._promisesService.getUsers(),
+      this._promisesService.getTodos()
+    ])
+    .then((response) => { console.log('Response', response); })
+    .catch((error) => { console.log('Error', error); })
+    .finally(() => console.log('Finally'));
   }
 }
