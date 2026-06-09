@@ -69,11 +69,15 @@ export class PromisesComponent {
   }
 
   async userTodos() {
-    console.log('User Todos');
+    try {
+      console.log('User Todos');
 
-    const userList: any[] = await this._promisesService.getUsers() as any[];
-    const userTodos = await this._promisesService.getUserTodos(userList[0].id);
-    console.log('Response User Todos: ', userTodos);
+      const userList: any[] = await this._promisesService.getUsers() as any[];
+      const userTodos = await this._promisesService.getUserTodos(userList[0].id);
+      console.log('Response User Todos: ', userTodos);
+    } catch(error) {
+      console.log('Catch', error);
+    }
 
     // this._promisesService.getUsers().then((response: any) => {
     //   this._promisesService.getUserTodos(response[0].id).then((userTodos) => { console.log(userTodos) });
