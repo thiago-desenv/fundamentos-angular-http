@@ -67,4 +67,12 @@ export class PromisesComponent {
    .catch((error) => { console.log('Error ', error); })
    .finally(() => console.log('Finally'));
   }
+
+  userTodos() {
+    console.log('User Todos');
+
+    this._promisesService.getUsers().then((response: any) => {
+      this._promisesService.getUserTodos(response[0].id).then((userTodos) => { console.log(userTodos) });
+    })
+  }
 }

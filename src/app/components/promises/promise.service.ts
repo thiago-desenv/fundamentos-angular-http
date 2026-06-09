@@ -39,4 +39,8 @@ export class PromiseService {
   getTodos() {
     return firstValueFrom(this._httpClient.get('https://jsonplaceholder.typicode.com/todos'));
   }
+
+  getUserTodos(userId: number) {
+    return firstValueFrom(this._httpClient.get('https://jsonplaceholder.typicode.com/todos?iserId=' + userId));
+  }
 }
