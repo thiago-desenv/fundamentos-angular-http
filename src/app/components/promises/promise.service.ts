@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,13 @@ export class PromiseService {
   }
 
   getUsers() {
-    return firstValueFrom(this._httpClient.get('https://jsonplaceholder.typicode.com/users'));
+    return firstValueFrom(
+      this._httpClient.get('https://jsonplaceholder.typicode.com/users').pipe(
+        map((userListResponse: any) => {
+          return userListResponse[0];
+        })
+      )
+    );
   }
 
   getTodos() {
