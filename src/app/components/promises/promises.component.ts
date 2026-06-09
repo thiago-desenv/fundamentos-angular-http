@@ -57,4 +57,14 @@ export class PromisesComponent {
    .catch((error) => { console.log('Error ', error); })
    .finally(() => console.log('Finally'));
   }
+
+  promiseAllSettled() {
+   Promise.allSettled([
+    this._promisesService.getUsers(),
+    this._promisesService.getTodos()
+   ])
+   .then((response) => { console.log('Response', response); })
+   .catch((error) => { console.log('Error ', error); })
+   .finally(() => console.log('Finally'));
+  }
 }
