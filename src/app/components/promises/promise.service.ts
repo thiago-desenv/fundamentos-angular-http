@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { firstValueFrom, map } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +33,15 @@ export class PromiseService {
   }
 
   getUsers() {
-    return firstValueFrom(
-      this._httpClient.get('https://jsonplaceholder.typicode.com/users').pipe(
-        map((userListResponse: any) => {
-          return userListResponse[0];
-        })
-      )
-    );
+    return firstValueFrom(this._httpClient.get('https://jsonplaceholder.typicode.com/users'));
+
+    // return firstValueFrom(
+    //   this._httpClient.get('https://jsonplaceholder.typicode.com/users').pipe(
+    //     map((userListResponse: any) => {
+    //       return userListResponse[0];
+    //     })
+    //   )
+    // );
   }
 
   getTodos() {
@@ -48,5 +50,21 @@ export class PromiseService {
 
   getUserTodos(userId: number) {
     return firstValueFrom(this._httpClient.get('https://jsonplaceholder.typicode.com/todos?iserId=' + userId));
+  }
+
+  getPromiseInterval() {
+    return firstValueFrom(
+      new Observable((observer) => {
+        const interval = setInterval(() => {
+          console.log('Interval');
+          observer.next('Valor emitido');
+        }, 1000);
+
+        return () => {
+          clearInterval(interval);
+          console.log('Finalizado');
+        }
+      })
+    );
   }
 }
